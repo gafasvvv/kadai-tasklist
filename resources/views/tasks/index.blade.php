@@ -3,7 +3,7 @@
 @section('content')
 
 <!-- ここにページ毎のコンテンツを書く -->
-<div class="container">
+<div class="container mb-3">
     <div class="row justify-content-md-center mt-5">
         <div class="col-md-8 col-md-offset-2">
             <div class="card">
@@ -38,6 +38,8 @@
                     @endif
                 <div class="form-group row　justify-content-md-center">
                     <div class="col-lg-6 offset-lg-4 mt-3">
+                        {{ $tasks->render('pagination::bootstrap-4') }}
+                        
                         {!! link_to_route('tasks.create', 'Add Task', null, ['class' => 'btn btn-primary btn-add ']) !!}
                         <style>
                         .btn-add:before {
