@@ -11,6 +11,7 @@
                         Task Detail
                     </div>
                     <div class="card-body text-center mb-2">
+                                <p>{{ $task->status }}</p>
                                 <p>{{ $task->content }}</p>
                         <div class="text-center mb-2">
                             {!! link_to_route('tasks.edit', 'Edit', ['id' => $task->id], ['class' => 'btn btn-light btn-edit']) !!}

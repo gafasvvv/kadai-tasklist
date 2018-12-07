@@ -10,15 +10,17 @@
                 <div class="card-header bg-dark text-white">Current Tasks</div>
                     @if (count($tasks) > 0)
                         <div class="panel-body">
-                            <table class="table table-striped task-table">
+                            <table class="table table-striped task-table ">
                                 <thead>
-                                    <th>Task</th>
                                     <th>&nbsp;</th>
+                                    <th>Status</th>
+                                    <th>Task</th>
                                 </thead>
                                 <tbody>
                                 @foreach ($tasks as $task)
                                 <tr>
                                     <td class="table-text">{!! link_to_route('tasks.show','Edit', ['id'=> $task->id],['class'=>'task-edit']) !!}</td>
+                                    <td>{{ $task->status }}</td>
                                     <td>{{ $task->content }}</td>
                                     <style>
                                     .task-edit:before {
@@ -35,7 +37,7 @@
                         </div>    
                     @endif
                 <div class="form-group row　justify-content-md-center">
-                    <div class="col-lg-6 offset-lg-4">
+                    <div class="col-lg-6 offset-lg-4 mt-3">
                         {!! link_to_route('tasks.create', 'Add Task', null, ['class' => 'btn btn-primary btn-add ']) !!}
                         <style>
                         .btn-add:before {
