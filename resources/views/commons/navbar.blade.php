@@ -5,6 +5,13 @@
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#nav-bar">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-            
+                
+                <div class="collapse navbar-collapse" id="nav-bar">
+                    <ul class="navbar-nav mr-auto"></ul>
+                    <ul class="navbar-nav">
+                        {!! link_to_route('signup.get', 'Sign up now!', [], ['class' => 'nav-link']) !!}
+                        <li class="nav-item"><a href="#" class="nav-link">Login</a></li>
+                    </ul>
+                </div>
             </nav>
         </header>
