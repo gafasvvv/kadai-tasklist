@@ -15,11 +15,20 @@ class TasksController extends Controller
      */
     public function index()
     {
-        $tasks = Task::orderBy('id','desc')->paginate(15);
+        $data = [];
+        if(\Auth::check()){
+            $user = \Auth::user();
+            $tasks = $user->tasks()->orderBy('created_at', 'desc')->paginate(10);
+            
+            $data = [
+                'user' => $user,
+                'tasks' => $tasks,
+            ];
+            
+            return view('/tasks/index', $data);
+        }
         
-        return view('tasks.index',[
-            'tasks'=>$tasks,
-            ]);
+        return view('/welcome');
     }
 
     /**
@@ -31,7 +40,9 @@ class TasksController extends Controller
     {
         $task = new Task;
         
-        return view('tasks.create',['task'=>$task,]);
+        return view('tasks.create',[
+            'task'=>$task
+        ]);
     }
 
     /**
@@ -50,6 +61,7 @@ class TasksController extends Controller
         $task = new Task;
         $task->status = $request->status;
         $task->content = $request->content;
+        $task->user_id = \Auth::id(); //ログイン認証済みのIDとユーザーIDを一致させてカラムに保存した
         $task->save();
         
         return redirect('/');
